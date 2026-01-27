@@ -299,6 +299,40 @@
         font-size: 16px;
       }
     }
+    /* MOBILE FIX */
+@media (max-width: 768px) {
+
+  /* menu */
+  nav ul {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  nav a {
+    font-size: 14px;
+  }
+
+  /* hero text */
+  .hero h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .hero p {
+    font-size: 16px;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  /* logo */
+  .logo img {
+    max-width: 200px;
+    height: auto;
+  }
+
+}
   </style>
 </head>
 
@@ -365,4 +399,5 @@
   <div class="page-end-space"></div>
 
 </body>
+
 </html>
