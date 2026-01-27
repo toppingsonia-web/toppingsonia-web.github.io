@@ -331,7 +331,90 @@
     max-width: 200px;
     height: auto;
   }
+/* ---------- MOBILE (telefon) ---------- */
+@media (max-width: 768px) {
 
+  /* 3) Menu: cieńsze + zawijanie + mniejsza czcionka */
+  header{
+    padding: 12px 14px;
+  }
+  .menu{
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .menu a{
+    font-size: 16px;
+  }
+  .menu li{
+    padding-left: 10px;
+  }
+  .menu li::before{
+    font-size: 16px;
+    top: -1px;
+  }
+
+  /* 1) Tekst hero: mniejszy + niżej */
+  .hero{
+    height: 380px;              /* więcej miejsca na telefonie */
+    background-position: center;
+    background-size: cover;     /* na telefonie wygląda lepiej niż contain */
+  }
+  .hero-content{
+    top: 32%;
+    padding: 0 16px;
+  }
+  .hero-content h1{
+    font-size: 30px;
+    line-height: 1.15;
+  }
+  .hero-content p{
+    font-size: 16px;
+    margin-top: 8px;
+  }
+
+  /* 2) Logo: mniejsze + bardziej na środku */
+  .hero-logo{
+    height: 160px;
+    top: 64%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* 4) Lampa: bez agresywnych minusowych marginesów */
+  .lamp-wrapper{
+    margin-top: -70px;
+    margin-bottom: 10px;
+  }
+  .lamp-wrapper img.lamp{
+    width: 200px;
+    max-width: 70vw;
+  }
+  .lamp-wrapper::before{
+    width: 280px;
+    height: 200px;
+    top: 60%;
+  }
+
+  /* 5) Drewno/tekst: schludniej + czytelniej */
+  .intro-bg{
+    margin-top: -20px;
+    padding: 10px 0 40px;
+  }
+  .intro-inner{
+    padding: 20px;
+  }
+  .intro-inner h2{
+    font-size: 24px;
+  }
+  .intro-inner h3{
+    font-size: 18px;
+  }
+  .intro-inner p,
+  .intro-inner li{
+    font-size: 16px;
+  }
+}
 }
   </style>
 </head>
@@ -401,3 +484,4 @@
 </body>
 
 </html>
+
