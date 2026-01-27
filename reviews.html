@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Topps Handyman • Reviews</title>
+
+  <style>
+    /* ---------- GLOBAL / RESET ---------- */
+    body { margin: 0; font-family: Arial, sans-serif; background-color: #000; color: white; }
+
+    /* ---------- HEADER (TAK SAMO JAK OUR SERVICES) ---------- */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #292929;
+      padding: 20px 40px;
+      position: relative;
+    }
+
+    .menu { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
+    .menu li { position: relative; padding-left: 14px; }
+    .menu li::before { content: "•"; color: #ffcc00; font-size: 22px; position: absolute; left: 0; top: 0; }
+    .menu a { color: #ffcc00; text-decoration: none; font-weight: bold; font-size: 22px; transition: color 0.3s; }
+    .menu a:hover { color: white; }
+
+    /* ---------- HERO (TAK SAMO JAK OUR SERVICES) ---------- */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 270px;
+      background-color: #000;
+      overflow: hidden;
+    }
+
+    .hero-logo {
+      position: absolute;
+      top: 55%;
+      left: 15%;
+      transform: translate(-50%, -50%);
+      height: 260px;
+      width: auto;
+      z-index: 3;
+    }
+
+    .hero-content {
+      position: absolute;
+      left: 50%;
+      top: 43%;
+      transform: translate(-50%, -50%);
+      max-width: 1000px;
+      text-align: center;
+      width: calc(100% - 80px);
+      padding: 0 40px;
+      box-sizing: border-box;
+    }
+
+    .hero-content h1 { font-size: 48px; color: #ffcc00; margin-bottom: 30; }
+    .hero-content p { font-size: 22px; color: #ffcc00; line-height: 1.7;
+    margin-top: 0; }
+
+    /* ---------- REVIEWS LAYOUT ---------- */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 30px 20px 60px; }
+
+    .reviews-top {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .reviews-left {
+      flex: 1 1 420px;
+      min-width: 320px;
+    }
+
+    .reviews-right {
+      flex: 1 1 520px;
+      min-width: 320px;
+    }
+
+    .rating-line {
+      font-weight: bold;
+      color: #fff;
+      margin: 10px 0 12px;
+    }
+
+    .facebook-link {
+      display: inline-block;
+      color: #ffcc00;
+      font-weight: bold;
+      text-decoration: none;
+      margin-bottom: 18px;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+    .facebook-link:hover { color: #fff; border-bottom-color: #fff; }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin: 18px 0 18px;
+    }
+
+    .control {
+      background: #111;
+      border: 2px solid #ffcc00;
+      border-radius: 12px;
+      color: #fff;
+      padding: 12px 14px;
+      font-size: 14px;
+      outline: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .control::placeholder { color: rgba(255,255,255,0.65); }
+
+    /* ---------- LEAVE A REVIEW (FORM) ---------- */
+    .card {
+      background: #111;
+      border: 2px solid #ffcc00;
+      border-radius: 14px;
+      padding: 18px;
+      box-sizing: border-box;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      color: #ffcc00;
+      font-size: 28px;
+    }
+
+    .card p { margin: 0 0 14px; color: #fff; font-size: 14px; line-height: 1.45; }
+
+    .field-label {
+      display: block;
+      color: #ffcc00;
+      font-weight: bold;
+      margin: 10px 0 6px;
+      font-size: 14px;
+    }
+
+    .btn {
+      margin-top: 14px;
+      background: #ffcc00;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.06s ease;
+    }
+    .btn:active { transform: scale(0.98); }
+
+    .small-note { margin-top: 10px; font-size: 12px; opacity: 0.85; }
+
+    /* ---------- REVIEWS GRID ---------- */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .review-box {
+      background: #111;
+      border: 2px solid #ffcc00;
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+      position: relative;
+      min-height: 140px;
+    }
+
+    .review-name {
+      color: #fff;
+      font-weight: 800;
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .stars { color: #ffcc00; font-size: 14px; margin-bottom: 8px; }
+
+    .review-text { margin: 0; font-size: 13px; line-height: 1.45; color: #fff; opacity: 0.95; }
+
+    .review-date {
+      position: absolute;
+      right: 12px;
+      bottom: 10px;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 10px;
+      color: #ffcc00;
+      font-weight: bold;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+    }
+    .read-more:hover { color: #fff; border-bottom-color: #fff; }
+
+    /* ---------- THANK YOU MESSAGE ---------- */
+    .thanks {
+      display: none;
+      margin-top: 14px;
+      color: #ffcc00;
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .toolbar { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .menu { gap: 18px; flex-wrap: wrap; justify-content: center; }
+      .menu a { font-size: 18px; }
+      .hero-logo { left: 50%; top: 52%; height: 220px; }
+      .hero-content { top: 20%; }
+      .hero-content h1 { font-size: 38px; }
+      .hero-content p { font-size: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER (identyczny jak Our Services) -->
+  <header>
+    <ul class="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Our Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+    </ul>
+  </header>
+
+  <!-- HERO (identyczny układ jak Our Services) -->
+  <div class="hero">
+    <img src="logo.jpg" class="hero-logo" alt="Topps Handyman logo" />
+    <div class="hero-content">
+      <h1>Customer Reviews</h1>
+      <p>Below you’ll find genuine reviews from satisfied customers. If you’ve used our services, feel free to leave your feedback using the form.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="reviews-top">
+      <!-- LEFT: intro + toolbar + form -->
+      <div class="reviews-left">
+        <div class="rating-line">Trusted by our customers — ★★★★★ 5.0 rating from 19 reviews.</div>
+               <div class="toolbar">
+          <input id="search" class="control" type="text" placeholder="Search reviews (name / word)" />
+          <select id="sort" class="control">
+            <option value="newest">Sort: newest</option>
+            <option value="oldest">Sort: oldest</option>
+          </select>
+          <select id="rating" class="control">
+            <option value="all">All ratings</option>
+            <option value="5">★★★★★ (5)</option>
+            <option value="4">★★★★☆ (4)</option>
+            <option value="3">★★★☆☆ (3)</option>
+            <option value="2">★★☆☆☆ (2)</option>
+            <option value="1">★☆☆☆☆ (1)</option>
+          </select>
+        </div>
+
+        <!-- Leave a review (wysyłka maila zrobiona jak u Ciebie przez Formspree) -->
+        <div class="card">
+          <h2>Leave a Review</h2>
+          <p>Fill in the form below and we’ll publish your review after a quick check (to prevent spam).</p>
+
+          <!-- WSTAW SWÓJ FORM ENDPOINT z Formspree -->
+          <form id="reviewForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <label class="field-label" for="name">Your name</label>
+            <input class="control" id="name" name="name" type="text" required />
+
+            <label class="field-label" for="stars">Rating</label>
+            <select class="control" id="stars" name="rating" required>
+              <option value="5">★★★★★ (5)</option>
+              <option value="4">★★★★☆ (4)</option>
+              <option value="3">★★★☆☆ (3)</option>
+              <option value="2">★★☆☆☆ (2)</option>
+              <option value="1">★☆☆☆☆ (1)</option>
+            </select>
+
+            <label class="field-label" for="review">Review</label>
+            <textarea class="control" id="review" name="review" rows="5" required></textarea>
+
+            <label class="field-label" for="reply">Email or phone (optional)</label>
+            <input class="control" id="reply" name="reply_to" type="text" />
+
+            <button class="btn" type="submit">Send review</button>
+
+            <div id="thanks" class="thanks">Thank you! Your review has been sent and we will be in touch shortly.</div>
+            <div class="small-note">Tip: You can also add a photo by sending it on Facebook Messenger.</div>
+          </form>
+        </div>
+      </div>
+
+      <!-- RIGHT: reviews -->
+      <div class="reviews-right">
+        <div id="reviewsGrid" class="reviews-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ======= DANE OPINII (podmień na wszystkie 19) =======
+    const reviewsData = [
+      {
+        name: "Heather",
+        rating: 5,
+        date: "07/04/2023",
+        text: "Absolutely brilliant from day one, no messing about, honest, trust worthy, straight talking fella..."
+      },
+      {
+        name: "Murray",
+        rating: 5,
+        date: "02/04/2023",
+        text: "Damien built a custom boiler cupboard in my kitchen and also fitted shelves in a cupboard..."
+      },
+      {
+        name: "Debbie Williamson",
+        rating: 5,
+        date: "26/02/2024",
+        text: "this handyman can do anything! I’ve had him for several jobs and he is amazing 🤩"
+      },
+      {
+        name: "Belinda",
+        rating: 5,
+        date: "10/10/2024",
+        text: "Great work and communication. Would use again."
+      },
+      {
+        name: "Marie",
+        rating: 5,
+        date: "11/04/2023",
+        text: `Great Handyman, arrived when he said he would, amazing value for money, brill communication.
+        Plumbed in my washer, fitted a new sink, had to undo old plumbers bad work, very adaptable,
+        even helped fit a part of a kitchen so we could plumb in new kitchen sink pre-kitchen fitter arriving.
+        He had a look at my faulty shower to see if it was a quick fix, fitting a new stop tap on the water supply
+        which was very helpful, aswell as stopping a few little leaks on other pipes and bless him didnt charge me extra.
+        Highly recommend, couldn't have found a better handyman.`
+      },
+      {
+        name: "Genevieve",
+        rating: 5,
+        date: "11/04/2023",
+        text: `5 Stars! Totally recommend Damien! Classes himself as a handyman, but he’s more than that.
+        I had professional plumbers out from professional firms, which totally let me down, and left jobs unfinished and done wrong.
+        Damien came in, communication was great, and he set upon himself to put the jobs and the work right from start to finish.
+        In fact, he had to pull out what was done wrong (by the professional firms).
+        He won’t take a job on unless he’s confident he can do it right for you, and he turns up when he says he’ll turn up. He fitted around my schedule.
+        No faults. 5 stars.`
+      },
+      {
+       name: "Sara",
+       rating: 5,
+       date: "17/04/2023",
+       text: `I am really pleased with the work done by TOPPS HANDYMAN.
+       I needed a clothes’ rack removed from my garden and the job was done within a short time.
+       I will definitely be in touch with them for any other jobs I may have in the future.
+       Thanks for your help!`
+      },
+      {
+      name: "Andrina Sykes-Wardrop",
+      rating: 5,
+      date: "01/05/2023",
+      text: `Would highly recommend TOPPS HANDYMAN.
+      He’s hardworking, punctual, and I was very pleased with his work.
+      Will definitely use again and would recommend him to anyone.`
+      },
+      {
+  name: "Melissa",
+  rating: 5,
+  date: "03/05/2023",
+  text: `Would highly recommend.
+
+Honest with what needed to be done, no cutting corners and the job was done to perfection.
+
+Will be in contact in the future.`
+},
+{
+  name: "Sarah",
+  rating: 5,
+  date: "09/05/2023",
+  text: `Topps Handyman fitted me in really quickly for a Ring doorbell and security chain fitting.
+
+Great price, efficient service and a nice guy. Highly recommend!`
+},
+{
+  name: "Sandra Paterson",
+  rating: 5,
+  date: "26/05/2023",
+  text: `Done roof panels and light fitting for me.
+
+Nice guy, good price, highly recommend and will definitely use again.`
+},
+{
+  name: "Mrs Stewart",
+  rating: 5,
+  date: "28/05/2023",
+  text: `Great service and affordable.
+
+Built a bin store for us.
+
+Would use again.`
+},
+{
+  name: "Jonathan Ainslie",
+  rating: 5,
+  date: "02/06/2023",
+  text: `Damien came out to my tenement to carry out extensive repairs to an outbuilding window. He also hung a door back on its hinges and fitted a new latch. The work was completed to a very high standard.
+
+It took slightly longer than anticipated due to the seriously neglected state of the building and the discovery of asbestos, but Damien adapted to these challenges quickly and kept very good communication throughout. Pricing was competitive and transparent.
+
+Having had several negative experiences with Aberdeen handymen in the past, it was a pleasure to find someone who operates to such high standards and I plan to hire him for further work in the future.`
+},
+{
+  name: "Matthew",
+  rating: 5,
+  date: "23/08/2023",
+  text: `Came out at very short notice to investigate a leak going through the roof from my bath.
+
+Gave sound advice, only needed a minor fix, but the job was done well and I found Damien very pleasant to deal with.`
+},
+{
+  name: "Alex",
+  rating: 5,
+  date: "25/02/2024",
+  text: `Did a great job fitting a shelf and sockets into my summerhouse.
+
+Pleasant and reliable, tidied up after himself and very reasonably priced.
+
+Highly recommend.`
+},
+{
+  name: "Kaz Selbie",
+  rating: 5,
+  date: "25/02/2024",
+  text: `Highly recommend Damian’s services.
+
+Quick, efficient, thinks outside the box and offers genuine advice.
+
+Will continue to use his services.`
+},
+{
+  name: "Emma",
+  rating: 5,
+  date: "31/10/2024",
+  text: `This is my second time using Damian and once again I’m delighted and couldn’t recommend him highly enough!
+
+From building trampolines, fixing lights, installing a loft ladder, setting up TVs or building beds — he does it all at very competitive prices.
+
+Honest, reliable, tidy, hardworking and just a pleasure to deal with. As someone with zero DIY skills, Damian is a godsend! 10 out of 10.`
+},
+{
+  name: "Lewis",
+  rating: 5,
+  date: "22/01/2025",
+  text: `Damian came to sort the door to my outdoor office. The door was leaking and also sticking.
+
+Damian came quite quickly to take a look and came up with a solution. He then returned and carried out the work quickly and tidily.
+
+He kept us informed all the way along and even managed to deliver the job at less than he had quoted.
+
+Would highly recommend!`
+},
+{
+  name: "Margaret",
+  rating: 5,
+  date: "02/04/2025",
+  text: `5-star review.
+
+Damian did a wonderful job that other handymen couldn’t do. He did a fantastic job sourcing the best materials at a cheaper price.
+
+He is reliable, keeps you informed and always does a great job. A superb change from all the cowboys out there.
+
+Would recommend 100 percent. Thank you.`
+},
+    ];
+
+    const grid = document.getElementById("reviewsGrid");
+    const searchEl = document.getElementById("search");
+    const sortEl = document.getElementById("sort");
+    const ratingEl = document.getElementById("rating");
+
+    function stars(n) {
+      return "★★★★★☆☆☆☆☆".slice(5 - n, 10 - n);
+    }
+
+    function parseDate(d) {
+      // dd/mm/yyyy
+      const [dd, mm, yyyy] = d.split("/").map(Number);
+      return new Date(yyyy, mm - 1, dd).getTime();
+    }
+
+    function render() {
+      const q = (searchEl.value || "").toLowerCase().trim();
+      const r = ratingEl.value;
+
+      let list = reviewsData.filter(item => {
+        const hay = (item.name + " " + item.text).toLowerCase();
+        const okSearch = !q || hay.includes(q);
+        const okRating = (r === "all") || (String(item.rating) === r);
+        return okSearch && okRating;
+      });
+
+      list.sort((a, b) => {
+        const da = parseDate(a.date);
+        const db = parseDate(b.date);
+        return sortEl.value === "newest" ? (db - da) : (da - db);
+      });
+
+      grid.innerHTML = list.map(item => `
+        <div class="review-box">
+          <div class="review-name">${item.name}</div>
+          <div class="stars">${stars(item.rating)}</div>
+          <p class="review-text">${item.text}</p>
+          <div class="review-date">${item.date}</div>
+        </div>
+      `).join("");
+    }
+
+    searchEl.addEventListener("input", render);
+    sortEl.addEventListener("change", render);
+    ratingEl.addEventListener("change", render);
+    render();
+
+    // ======= Formspree: pokaż "thank you" na stronie (zamiast osobnej strony) =======
+    const form = document.getElementById("reviewForm");
+    const thanks = document.getElementById("thanks");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (res.ok) {
+          form.reset();
+          thanks.style.display = "block";
+          setTimeout(() => (thanks.style.display = "none"), 6000);
+        } else {
+          alert("Sorry — something went wrong. Please try again.");
+        }
+      } catch (err) {
+        alert("Network error — please try again.");
+      }
+    });
+  </script>
+</body>
+</html>

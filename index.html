@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Topps Handyman</title>
+
+  <style>
+    /* ---------- GLOBAL / RESET ---------- */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: white;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #292929;
+      padding: 20px 40px;
+      position: relative;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu li {
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .menu li::before {
+      content: "•";
+      color: #ffcc00;
+      font-size: 22px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .menu a {
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 22px;
+      transition: color 0.3s;
+    }
+
+    .menu a:hover {
+      color: white;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 270px;
+      background-image: url("baner.jpg");
+      background-size: contain;
+      background-position: 99% center;
+      background-repeat: no-repeat;
+      background-color: #000;
+      overflow: hidden;
+    }
+
+    .hero-logo {
+      position: absolute;
+      top: 55%;
+      left: 15%;
+      transform: translate(-50%, -50%);
+      height: 260px;
+      width: auto;
+      z-index: 3;
+    }
+
+    .hero-content {
+      position: absolute;
+      left: 50%;
+      top: 43%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 100%;
+      padding: 0 40px;
+      box-sizing: border-box;
+    }
+
+    .hero-content h1 {
+      font-size: 48px;
+      color: #ffcc00;
+      margin: 0;
+    }
+
+    .hero-content p {
+      font-size: 22px;
+      color: #ffcc00;
+      margin-top: 10px;
+    }
+
+    /* ---------- LAMPA POD HERO ---------- */
+    .lamp-wrapper {
+      width: 100%;
+      text-align: center;
+      margin-top: -150px;
+      margin-bottom: 20px;
+    }
+    .lamp-wrapper::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translate(-50%, -50%);
+    width: 420px;
+    height: 300px;
+    background: radial-gradient(
+        circle,
+        rgba(255,180,60,0.55) 0%,
+        rgba(255,140,40,0.30) 35%,
+        rgba(0,0,0,0) 70%
+    );
+    filter: blur(25px);
+    pointer-events: none;
+    z-index: 0;
+    }
+    .lamp-wrapper img.lamp {
+      width: 260px;
+      max-width: 40vw;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    
+    /* ---------- DREWNIANA SEKCJA ---------- */
+    .intro-bg {
+      position: relative;
+      width: 100%;
+      padding: 10px 0 60px;
+      display: flex;
+      justify-content: center;
+      margin-top: -60px;
+    }
+
+    .intro-inner {
+      width: 800px;
+      max-width: 90%;
+      background-image: url("drewno.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 40px;
+      color: #fff;
+      position: relative;
+      text-align: left;
+      line-height: 1.6;
+      z-index: 2;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .intro-inner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: -1;
+    }
+
+    .intro-inner h2 {
+      font-size: 32px;
+      color: #ffcc00;
+      margin-bottom: 20px;
+    }
+
+    .intro-inner h3 {
+      font-size: 24px;
+      color: #ffcc00;
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+
+    .intro-inner p {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .intro-inner ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 15px 0;
+    }
+
+    .intro-inner li {
+      margin-bottom: 8px;
+    }
+
+    .intro-inner li::before {
+      content: "★";
+      color: #ffcc00;
+      margin-right: 8px;
+      font-size: 16px;
+    }
+
+    .page-end-space { height: 60px; }
+    /* =========================================================
+       ✅ MOBILE (TELEFON) – DOPISANE NA KOŃCU, NIE PSUJE DESKTOPU
+       ========================================================= */
+    @media (max-width: 768px) {
+
+      /* menu: mniejsze, może się zawijać */
+      header {
+        padding: 14px 16px;
+      }
+      .menu {
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .menu a {
+        font-size: 16px;
+      }
+      .menu li::before {
+        font-size: 18px;
+        top: -1px;
+      }
+
+      /* hero: bez nachodzenia, wszystko czytelne */
+      .hero {
+        height: 340px;
+        background-position: center top;
+      }
+
+      .hero-logo {
+        left: 50%;
+        top: 62%;
+        height: 180px;
+      }
+
+      .hero-content {
+        top: 20%;
+        padding: 0 16px;
+      }
+
+      .hero-content h1 {
+        font-size: 28px;
+        line-height: 1.15;
+      }
+
+      .hero-content p {
+        font-size: 16px;
+        margin-top: 8px;
+      }
+
+      /* lampa: mniejszy „skok” w górę */
+      .lamp-wrapper {
+        margin-top: -95px;
+      }
+
+      .lamp-wrapper::before {
+        width: 320px;
+        height: 240px;
+        filter: blur(22px);
+        top: 62%;
+      }
+
+      .lamp-wrapper img.lamp {
+        width: 210px;
+        max-width: 60vw;
+      }
+
+      /* drewno: mniejsze paddingi i fonty */
+      .intro-bg {
+        margin-top: -30px;
+        padding: 10px 0 40px;
+      }
+
+      .intro-inner {
+        padding: 22px;
+        max-width: 92%;
+      }
+
+      .intro-inner h2 {
+        font-size: 24px;
+        margin-bottom: 14px;
+      }
+
+      .intro-inner h3 {
+        font-size: 20px;
+        margin-top: 18px;
+      }
+
+      .intro-inner p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+ <header>
+    <ul class="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Our Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+    </ul>
+  </header>
+  <div class="hero">
+    <img src="logo.jpg" class="hero-logo" alt="Topps Handyman logo" />
+    <div class="hero-content">
+      <h1>Reliable • Professional • Local</h1>
+      <p>High-quality handyman services you can trust.</p>
+    </div>
+  </div>
+
+  <div class="lamp-wrapper">
+    <img src="lampa.jpg" class="lamp" alt="Hanging lamp" />
+  </div>
+
+  <section class="intro-bg">
+    <div class="intro-inner">
+      <h2>Welcome to Topps Handyman Services</h2>
+
+      <p>
+        Topps Handyman is your reliable partner for home repairs, improvements, and maintenance
+        done right the first time. Based in Aberdeen, I specialise in small domestic repairs, always delivered with care,
+        precision, and a strong commitment to high-quality workmanship.
+      </p>
+
+      <p>
+        Topps Handyman specialises in the smaller tasks that big companies tend to avoid.
+        No job is too small — if it matters to you, it matters to me.
+      </p>
+
+      <p>
+        Whether you need a quick fix, a fresh update, or ongoing home maintenance support,
+        I focus on clear communication, honest pricing, and treating every home with the respect it deserves.
+        Every task is completed to the highest standard.
+      </p>
+
+      <h3>Why Choose Topps Handyman?</h3>
+      <ul>
+        <li>Professional craftsmanship – skilled, detail-focused work across multiple trades.</li>
+        <li>Reliable and trustworthy – I turn up when I say I will and keep you informed.</li>
+        <li>Honest pricing – no hidden costs, no surprises, just straightforward quotes.</li>
+        <li>Local expertise – supporting homeowners and landlords throughout Aberdeen.</li>
+      </ul>
+
+      <h3>Your Home, My Priority</h3>
+      <p>
+        At Topps Handyman, I take pride in building long-term relationships through dependable service and genuine care.
+        Whether it's a minor repair or an emergency call out, you can trust me to work safely, efficiently,
+        and with exceptional attention to detail.
+      </p>
+    </div>
+  </section>
+
+  <div class="page-end-space"></div>
+
+</body>
+</html>

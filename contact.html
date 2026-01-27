@@ -1,0 +1,467 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Topps Handyman • Contact</title>
+
+  <style>
+    /* ---------- GLOBAL / RESET ---------- */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: white;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #292929;
+      padding: 20px 40px;
+      position: relative;
+    }
+
+    /* MENU */
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      margin: 0;
+      padding: 0;
+    }
+    .menu li {
+      position: relative;
+      padding-left: 14px;
+    }
+    .menu li::before {
+      content: "•";
+      color: #ffcc00;
+      font-size: 22px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .menu a {
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 22px;
+      transition: color 0.3s;
+    }
+    .menu a:hover {
+      color: white;
+    }
+
+    /* ---------- HERO / GÓRNY BANER ---------- */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 270px;
+      background-image: url("baner.jpg");
+      background-size: contain;
+      background-position: 99% center;
+      background-repeat: no-repeat;
+      background-color: #000;
+      overflow: hidden;
+    }
+
+    /* logo w hero (po lewej) */
+    .hero-logo {
+      position: absolute;
+      top: 55%;
+      left: 15%;
+      transform: translate(-50%, -50%);
+      height: 260px;
+      width: auto;
+      z-index: 3;
+    }
+
+    /* tekst w hero */
+    .hero-content {
+      position: absolute;
+      left: 50%;
+      top: 43%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 100%;
+      padding: 0 12px;
+      box-sizing: border-box;
+    }
+    .hero-content h1 {
+      font-size: 48px;
+      color: #ffcc00;
+      margin: 0;
+    }
+    .hero-content p {
+      font-size: 22px;
+      color: #ffcc00;
+      margin-top: 10px;
+    }
+
+     /* ---------- LAMPA POD HERO ---------- */
+    .lamp-wrapper {
+      width: 100%;
+      text-align: center;
+      margin-top: -150px;
+      margin-bottom: 20px;
+    }
+    .lamp-wrapper::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translate(-50%, -50%);
+    width: 420px;
+    height: 300px;
+    background: radial-gradient(
+        circle,
+        rgba(255,180,60,0.55) 0%,
+        rgba(255,140,40,0.30) 35%,
+        rgba(0,0,0,0) 70%
+    );
+    filter: blur(25px);
+    pointer-events: none;
+    z-index: 0;
+    }
+    .lamp-wrapper img.lamp {
+      width: 260px;
+      max-width: 40vw;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    /* ---------- DREWNIANA SEKCJA ---------- */
+    .intro-bg {
+      position: relative;
+      width: 100%;
+      padding: 10px 0 60px;
+      display: flex;
+      justify-content: center;
+      margin-top: -60px;
+    }
+
+    /* "światło" na deskach */
+    .intro-bg::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 250px;
+      background: radial-gradient(
+        circle,
+        rgba(255, 203, 0, 0.35) 0%,
+        rgba(255, 203, 0, 0.15) 40%,
+        rgba(0, 0, 0, 0) 70%
+      );
+      pointer-events: none;
+      z-index: 1;
+      filter: blur(20px);
+    }
+
+    /* deski */
+    .intro-inner {
+      width: 800px;
+      max-width: 90%;
+      background-image: url("drewno.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 40px;
+      color: white;
+      position: relative;
+      text-align: left;
+      z-index: 2;
+      line-height: 1.6;
+      border-radius: 12px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* przyciemnienie desek dla czytelności */
+    .intro-inner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: -1;
+    }
+
+    .intro-inner h2 {
+      font-size: 32px;
+      color: #ffcc00;
+      margin-bottom: 12px;
+    }
+    .intro-inner h3 {
+      font-size: 24px;
+      color: #ffcc00;
+      margin-top: 22px;
+      margin-bottom: 10px;
+    }
+    .intro-inner p {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .intro-inner ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 15px 0;
+    }
+    .intro-inner li {
+      margin-bottom: 8px;
+    }
+    .intro-inner li::before {
+      content: "★";
+      color: #ffcc00;
+      margin-right: 8px;
+      font-size: 16px;
+    }
+
+    /* ---------- CONTACT LAYOUT ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 16px;
+      align-items: start;
+    }
+
+    .link-gold {
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .link-gold:hover {
+      color: white;
+    }
+
+    /* ---------- FORM ---------- */
+    .form-label {
+      display: block;
+      margin-bottom: 6px;
+      color: #ffcc00;
+      font-weight: bold;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,204,0,0.35);
+      background: #111;
+      color: #fff;
+      box-sizing: border-box;
+      margin-bottom: 12px;
+    }
+
+    .form-textarea {
+      resize: vertical;
+    }
+
+    .form-button {
+      background: #ffcc00;
+      color: #000;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .small-note {
+      margin-top: 12px;
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    /* ---------- RESPONSYWNOŚĆ (telefon) ---------- */
+    @media (max-width: 768px) {
+      header {
+        padding: 14px 16px;
+      }
+      .menu {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .menu a { font-size: 18px; }
+      .menu li::before { font-size: 18px; top: 1px; }
+
+      .hero {
+        height: 220px;
+        background-size: cover;
+        background-position: center right;
+      }
+      .hero-logo {
+        left: 22%;
+        height: 160px;
+        top: 55%;
+      }
+      .hero-content h1 { font-size: 30px; }
+      .hero-content p { font-size: 18px; }
+
+      .lamp-wrapper { margin-top: -90px; }
+      .lamp-wrapper img.lamp { width: 200px; }
+
+      .intro-bg { margin-top: -30px; padding: 10px 0 40px; }
+      .intro-inner { padding: 24px; }
+      .intro-inner h2 { font-size: 26px; }
+      .intro-inner h3 { font-size: 20px; }
+      .intro-inner p, .intro-inner li { font-size: 16px; }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero { height: 200px; }
+      .hero-logo { height: 140px; left: 24%; }
+      .hero-content h1 { font-size: 26px; }
+      .menu a { font-size: 16px; }
+    }
+
+    .page-end-space { height: 60px; }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <ul class="menu">
+      <!-- Jeśli nie chcesz jeszcze przełączania stron, możesz dać href="#" -->
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Our Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+    </ul>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="logo.jpg" class="hero-logo" alt="Topps Handyman logo" />
+    <div class="hero-content">
+      <h1>Contact</h1>
+      <p>Get in touch for a free, no-obligation quote.</p>
+    </div>
+  </div>
+
+  <!-- LAMPA -->
+  <div class="lamp-wrapper">
+    <img src="lampa.jpg" class="lamp" alt="Hanging lamp" />
+  </div>
+
+  <!-- CONTACT (DREWNO) -->
+  <section class="intro-bg">
+    <div class="intro-inner">
+      <h2>Contact Topps Handyman</h2>
+
+      <p>
+        Have a job in mind or need a quote? Get in touch and I’ll be happy to help.
+        The quickest way is to send a short message with a brief description of the job.
+        Photos are always helpful, but not required.
+      </p>
+
+      <div class="contact-grid">
+
+        <!-- LEWA: dane -->
+        <div>
+          <h3>Contact details</h3>
+          <ul>
+            <li>
+              <strong>Phone:</strong>
+              <!-- TODO: podmień numer -->
+              <a class="link-gold" href="tel:+447729400196">+44 7729400196</a>
+            </li>
+
+            <li>
+              <strong>Email:</strong>
+              <!-- TODO: podmień email jeśli inny -->
+              <a class="link-gold" href="mailto:info@topps-handyman.uk">info@topps-handyman.uk</a>
+            </li>
+
+
+            <li><strong>Area covered:</strong> Aberdeen & surrounding areas</li>
+          </ul>
+
+          <h3>Working hours</h3>
+          <ul>
+            <li>Mon–Fri: 8:00 – 17:00</li>
+            <li>Out of hours call-out fee applies - price agreed before attendance</li>
+          </ul>
+
+          <p style="margin-top: 14px;">
+            Not sure if your job fits? Small jobs are always welcome — just get in touch.
+          </p>
+        </div>
+
+        <!-- PRAWA: formularz -->
+        <div>
+          <h3>Send a message</h3>
+          <p style="margin-bottom: 14px;">
+            Fill in the form below and I’ll get back to you as soon as possible.
+          </p>
+
+          <!-- FORM: Formspree -->
+          <form id="contact-form" action="https://formspree.io/f/mkojbood" method="POST">
+            <!-- TODO: wklej swój prawdziwy link Formspree zamiast XXXXYYYY -->
+
+            <label class="form-label" for="name">Name</label>
+            <input class="form-input" id="name" type="text" name="name" required />
+
+            <label class="form-label" for="reply">Email or phone</label>
+            <input class="form-input" id="reply" type="text" name="reply_to" required />
+
+            <label class="form-label" for="message">Message</label>
+            <textarea class="form-textarea" id="message" name="message" rows="6" required></textarea>
+
+            <button class="form-button" type="submit">Send message</button>
+
+          </form>
+          <div id="thank-you-message"
+          style="display:none;
+          margin-top: 20px;">
+            <h3
+        style="color:#f4c430;">Thank you for contacting Topps Handyman. Your message has been sent and we will be in touch shortly.</h3>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="page-end-space"></div>
+  <script>
+  const form = document.getElementById('contact-form');
+  const thankYou = document.getElementById('thank-you-message');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // to blokuje przejście na Formsfree
+
+    try {
+      const formData = new FormData(form);
+
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.reset();
+        thankYou.style.display = 'block';
+        // opcjonalnie: ukryj formularz po wysłaniu
+        // form.style.display = 'none';
+      } else {
+        alert("Sorry — something went wrong. Please try again or message us on Facebook.");
+      }
+    } catch (err) {
+      alert("Network error. Please try again or call us.");
+    }
+  });
+</script>
+</body>
+</html>
