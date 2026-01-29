@@ -209,15 +209,17 @@
 
     .page-end-space { height: 60px; }
   /* ==========================
-   MOBILE – FINAL CLEAN FIX
+   MOBILE – FINAL LAYOUT
+   Menu -> Text -> Tools photo -> Logo left -> Lamp -> Intro
    ========================== */
 @media (max-width: 768px) {
 
-  /* HEADER */
+  /* HEADER / MENU */
   .site-header{
     position: sticky;
     top: 0;
     z-index: 1000;
+    padding: 12px 14px;
   }
 
   .menu{
@@ -226,76 +228,89 @@
     justify-content: center;
   }
 
-  .menu a{
-    font-size: 14px;
-  }
+  .menu a{ font-size: 14px; }
+  .menu li{ padding-left: 10px; }
+  .menu li::before{ font-size: 14px; top: -1px; }
 
-  .menu li::before{
-    font-size: 14px;
-  }
-
-  /* HERO – COLUMN LAYOUT */
+  /* HERO – zmieniamy na layout pionowy */
   .hero{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: relative;
     height: auto;
-    min-height: 0;
-    padding: 20px 0 30px;
-    background-size: cover;
-    background-position: center;
+    padding: 18px 0 12px;
+    background: none; /* ważne: wyłączamy desktopowe tło */
+    overflow: hidden;
   }
 
-  /* USUWAMY desktopowe pozycjonowanie */
-  .hero-logo,
+  /* 1) TEKST NA GÓRZE (bez absolute) */
   .hero-content{
     position: static !important;
     transform: none !important;
-  }
-
-  .hero-logo{
-    height: 100px;
-    margin: 0 auto 12px;
-  }
-
-  .hero-content{
-    padding: 10 12px;
     text-align: center;
     max-width: 92%;
-    margin-top: 12px;
-    background: rgba(0,0,0,0.45);
-    border-radius: 10px;
-
-
+    margin: 10px auto 14px;
+    padding: 0 12px;
+    background: none; /* bez otoczki */
   }
 
   .hero-content h1{
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1.25;
+    margin: 0;
   }
 
   .hero-content p{
-    font-size: 13px;
+    font-size: 14px;
+    margin: 8px 0 0;
   }
 
-  /* LAMPA – BLISKO HERO */
+  /* 2) ZDJĘCIE NARZĘDZI POD TEKSTEM (z baner.jpg) */
+  .hero::after{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 220px;                 /* wysokość zdjęcia na mobile */
+    margin: 8px auto 0;
+    background-image: url("baner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right center;
+    border-radius: 0;              /* możesz dać 12px jeśli chcesz */
+  }
+
+  /* 3) LOGO PO LEWEJ (małe, branding) */
+  .hero-logo{
+    position: static !important;
+    transform: none !important;
+    display: block;
+    height: 70px;
+    width: auto;
+    margin: 12px 0 0 16px;         /* lewa strona */
+    opacity: 0.98;
+  }
+
+  /* LAMPA – bliżej sekcji wyżej */
   .lamp-wrapper{
-    margin: -6px 0 0;
+    margin-top: -6px;
+    margin-bottom: 10px;
+    position: relative;
   }
 
-  .lamp-wrapper img{
-    width: 160px;
+  .lamp-wrapper img.lamp{
+    width: 170px;
+    max-width: 70vw;
   }
 
+  /* „światło” – na mobile trochę niżej (żeby padało na deski) */
   .lamp-wrapper::before{
-    width: 220px;
-    height: 160px;
-    top: 50%;
+    top: 75%;
+    width: 280px;
+    height: 200px;
+    filter: blur(22px);
   }
 
   /* INTRO */
   .intro-bg{
-    margin-top: 12px;
+    margin-top: 10px;
     padding: 10px 0 30px;
   }
 
@@ -306,6 +321,7 @@
 
   .intro-inner h2{
     font-size: 22px;
+    margin-bottom: 12px;
   }
 
   .intro-inner h3{
@@ -386,3 +402,4 @@
 
 </body>
 </html>
+
