@@ -223,14 +223,34 @@
   }
 
   .menu{
-    gap: 10px 16px;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 22px;
+    padding:10px 14px;
+    justify-items: start;
+
   }
 
-  .menu a{ font-size: 14px; }
-  .menu li{ padding-left: 10px; }
-  .menu li::before{ font-size: 14px; top: -1px; }
+  .menu a{ 
+    font-size: 16px; 
+    font-weight: 600; 
+  }
+  .menu li{
+   position: relative;
+   padding-left: 16px;
+   white-space: nowrap;
+    
+  }
+  .menu li::before{ 
+   content: "•"; 
+   position: absolute;
+   left: 0;
+   top: 50%;
+   transform: translateY(-50%);
+   font-size: 16px;
+   color: #f5b301;
+   line-height: 1;
+  }
 
   /* HERO – layout pionowy */
   .hero{
@@ -246,7 +266,7 @@
     position: static !important;
     transform: none !important;
     display: block;
-    height: 86px;              /* 78–95 jak chcesz */
+    height: 86px;              
     width: auto;
     margin: 14px 0 6px 16px;
     opacity: 0.98;
@@ -289,7 +309,7 @@
 
   /* LAMPA – NIE MOŻE BYĆ UJEMNEGO MARGINA */
   .lamp-wrapper{
-    margin-top: 5px;     /* <-- to zapobiega nachodzeniu na baner */
+    margin-top: 5px;     
     margin-bottom: 6px;
     position: relative;
     background: #000;
@@ -330,7 +350,7 @@
     overflow: hidden;
   }
 
-  /* INTRO – trochę wyżej, ale bez kolizji z lampą */
+  /* INTRO  */
   .intro-bg{
     margin-top: -70px;
     padding: 0px;
@@ -379,8 +399,11 @@
   .star-list li{
     font-size: 15px;
   }
-
-  /* opcjonalne: jeśli używasz .dot */
+.intro-text,
+.about-text{
+  text-align: left;
+}
+  
   .dot{
     margin: 0 6px;
     display: inline-block;
@@ -412,7 +435,7 @@
   <div class="hero">
     <img src="logo.jpg" class="hero-logo" alt="Topps Handyman logo" />
     <div class="hero-content">
-      <h1>Reliable •</span> • Professional •Local</h1>
+      <h1>Reliable • Professional •Local</h1>
       <p>High-quality handyman services you can trust.</p>
     </div>
   </div>
@@ -428,7 +451,7 @@
       <p>
         Topps Handyman is your reliable partner for home repairs, improvements, and maintenance
         done right the first time. Based in Aberdeen, I specialise in small domestic repairs, always delivered with care,
-        precision, and a strong commitment to high-quality workmanship.
+        precision, and a strong commitment to high quality workmanship.
       </p>
 
       <p>
@@ -463,3 +486,5 @@
 
 </body>
 </html>
+
+
