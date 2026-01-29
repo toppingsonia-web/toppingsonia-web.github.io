@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -208,214 +208,66 @@
     }
 
     .page-end-space { height: 60px; }
-    /* =========================================================
-       ✅ MOBILE (TELEFON) – DOPISANE NA KOŃCU, NIE PSUJE DESKTOPU
-       ========================================================= */
-    @media (max-width: 768px) {
-
-      /* menu: mniejsze, może się zawijać */
-      header {
-        padding: 14px 16px;
-      }
-      .menu {
-        gap: 18px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .menu a {
-        font-size: 16px;
-      }
-      .menu li::before {
-        font-size: 18px;
-        top: -1px;
-      }
-
-      /* hero: bez nachodzenia, wszystko czytelne */
-      .hero {
-        height: 340px;
-        background-position: center top;
-      }
-
-      .hero-logo {
-        left: 50%;
-        top: 62%;
-        height: 180px;
-      }
-
-      .hero-content {
-        top: 20%;
-        padding: 0 16px;
-      }
-
-      .hero-content h1 {
-        font-size: 28px;
-        line-height: 1.15;
-      }
-
-      .hero-content p {
-        font-size: 16px;
-        margin-top: 8px;
-      }
-
-      /* lampa: mniejszy „skok” w górę */
-      .lamp-wrapper {
-        margin-top: -95px;
-      }
-
-      .lamp-wrapper::before {
-        width: 320px;
-        height: 240px;
-        filter: blur(22px);
-        top: 62%;
-      }
-
-      .lamp-wrapper img.lamp {
-        width: 210px;
-        max-width: 60vw;
-      }
-
-      /* drewno: mniejsze paddingi i fonty */
-      .intro-bg {
-        margin-top: -30px;
-        padding: 10px 0 40px;
-      }
-
-      .intro-inner {
-        padding: 22px;
-        max-width: 92%;
-      }
-
-      .intro-inner h2 {
-        font-size: 24px;
-        margin-bottom: 14px;
-      }
-
-      .intro-inner h3 {
-        font-size: 20px;
-        margin-top: 18px;
-      }
-
-      .intro-inner p {
-        font-size: 16px;
-      }
-    }
-    /* MOBILE FIX */
+   /* ==========================
+   MOBILE FIX (clean layout)
+   ========================== */
 @media (max-width: 768px) {
 
-  /* menu */
-  nav ul {
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+  .site-header{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
 
-  nav a {
-    font-size: 14px;
-  }
-
-  /* hero text */
-  .hero h1 {
-    font-size: 32px;
-    line-height: 1.2;
-    text-align: center;
-  }
-
-  .hero p {
-    font-size: 16px;
-    text-align: center;
-    padding: 0 15px;
-  }
-
-  /* logo */
-  .logo img {
-    max-width: 200px;
-    height: auto;
-  }
-/* ---------- MOBILE (telefon) ---------- */
-@media (max-width: 768px) {
-
-  /* 3) Menu: cieńsze + zawijanie + mniejsza czcionka */
-  header{
-    padding: 12px 14px;
-  }
   .menu{
-    gap: 16px;
+    gap: 12px 18px;
     flex-wrap: wrap;
     justify-content: center;
   }
-  .menu a{
-    font-size: 16px;
-  }
-  .menu li{
-    padding-left: 10px;
-  }
-  .menu li::before{
-    font-size: 16px;
-    top: -1px;
-  }
 
-  /* 1) Tekst hero: mniejszy + niżej */
   .hero{
-    height: 380px;              /* więcej miejsca na telefonie */
+    height: auto;
+    min-height: 0;
+    padding: 24px 0 16px;
+    background-size: cover;
     background-position: center;
-    background-size: cover;     /* na telefonie wygląda lepiej niż contain */
   }
+
   .hero-content{
-    top: 32%;
+    position: static;
+    transform: none;
+    width: auto;
     padding: 0 16px;
-  }
-  .hero-content h1{
-    font-size: 30px;
-    line-height: 1.15;
-  }
-  .hero-content p{
-    font-size: 16px;
-    margin-top: 8px;
+    margin: 0 auto 14px;
+    text-align: center;
   }
 
-  /* 2) Logo: mniejsze + bardziej na środku */
   .hero-logo{
-    height: 160px;
-    top: 64%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: static;
+    transform: none;
+    height: 140px;
+    margin: 0 auto 10px;
   }
 
-  /* 4) Lampa: bez agresywnych minusowych marginesów */
   .lamp-wrapper{
-    margin-top: -70px;
+    margin-top: 10px;
     margin-bottom: 10px;
   }
-  .lamp-wrapper img.lamp{
-    width: 200px;
-    max-width: 70vw;
-  }
+
   .lamp-wrapper::before{
-    width: 280px;
-    height: 200px;
-    top: 60%;
+    top: 55%;
   }
 
-  /* 5) Drewno/tekst: schludniej + czytelniej */
   .intro-bg{
-    margin-top: -20px;
-    padding: 10px 0 40px;
+    margin-top: 10px;
+    padding: 10px 0 30px;
   }
+
   .intro-inner{
-    padding: 20px;
-  }
-  .intro-inner h2{
-    font-size: 24px;
-  }
-  .intro-inner h3{
-    font-size: 18px;
-  }
-  .intro-inner p,
-  .intro-inner li{
-    font-size: 16px;
+    max-width: 94%;
   }
 }
-}
+
   </style>
 </head>
 
@@ -482,6 +334,4 @@
   <div class="page-end-space"></div>
 
 </body>
-
 </html>
-
