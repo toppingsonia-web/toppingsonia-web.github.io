@@ -387,6 +387,20 @@
       .hero, .intro-bg{ width: 100%; overflow: hidden; }
     }
   </style>
+  <!-- Google Analytics 4 – GDPR safe -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1G79N1TMR9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Domyślnie: brak zgody na analytics cookies
+  gtag('consent', 'default', {
+    analytics_storage: 'denied'
+  });
+
+  gtag('js', new Date());
+  gtag('config', 'G-1G79N1TMR9', { anonymize_ip: true });
+</script>
 </head>
 
 <body>
@@ -462,6 +476,72 @@
   </section>
 
   <div class="page-end-space"></div>
+<div id="cookie-banner" style="
+  position:fixed;left:0;right:0;bottom:0;
+  background:#111;border-top:2px solid #ffcc00;color:#fff;
+  padding:14px 16px;display:none;z-index:9999;font-size:14px;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;">
+    <div style="flex:1 1 300px;">
+      We use analytics cookies to understand website traffic. You can accept or reject analytics cookies.
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button id="cookie-reject" style="
+        background:#222;border:2px solid #ffcc00;color:#ffcc00;
+        padding:8px 14px;border-radius:10px;cursor:pointer;font-weight:700;">
+        Reject
+      </button>
+      <button id="cookie-accept" style="
+        background:#ffcc00;border:none;color:#000;
+        padding:8px 14px;border-radius:10px;cursor:pointer;font-weight:800;">
+        Accept
+      </button>
+    </div>
+  </div>
+</div>
 
+<script>
+  const banner = document.getElementById("cookie-banner");
+  const acceptBtn = document.getElementById("cookie-accept");
+  const rejectBtn = document.getElementById("cookie-reject");
+
+  const KEY = "cookieConsent"; // accepted | rejected
+
+  function getConsent() { return localStorage.getItem(KEY); }
+  function setConsent(v) { localStorage.setItem(KEY, v); }
+
+  function grantAnalytics() {
+    if (typeof gtag === "function") {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+  }
+
+  function denyAnalytics() {
+    if (typeof gtag === "function") {
+      gtag('consent', 'update', { analytics_storage: 'denied' });
+    }
+  }
+
+  const consent = getConsent();
+  if (!consent) {
+    banner.style.display = "block";
+  } else if (consent === "accepted") {
+    grantAnalytics();
+  } else {
+    denyAnalytics();
+  }
+
+  acceptBtn.addEventListener("click", () => {
+    setConsent("accepted");
+    banner.style.display = "none";
+    grantAnalytics();
+  });
+
+  rejectBtn.addEventListener("click", () => {
+    setConsent("rejected");
+    banner.style.display = "none";
+    denyAnalytics();
+  });
+</script>
 </body>
 </html>
+
