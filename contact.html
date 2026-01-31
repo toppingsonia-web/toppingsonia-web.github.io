@@ -391,6 +391,20 @@ border-radius: 0 !important;
   .menu a { font-size: 16px; }
 }
   </style>
+  <!-- Google Analytics 4 – GDPR safe -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1G79N1TMR9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Domyślnie: brak zgody na analytics cookies
+  gtag('consent', 'default', {
+    analytics_storage: 'denied'
+  });
+
+  gtag('js', new Date());
+  gtag('config', 'G-1G79N1TMR9', { anonymize_ip: true });
+</script>
 </head>
 
 <body>
@@ -432,25 +446,33 @@ border-radius: 0 !important;
 
       <div class="contact-grid">
 
-        <!-- LEWA: dane -->
-        <div>
-          <h3>Contact details</h3>
-          <ul>
-            <li>
-              <strong>Phone:</strong>
-              <!-- TODO: podmień numer -->
-              <a class="link-gold" href="tel:+447729400196">+44 7729400196</a>
-            </li>
+       <!-- LEWA: dane -->
+<div>
+  <h3>Contact details</h3>
+  <ul>
+    <li>
+      <strong>Phone:</strong>
+      <a class="link-gold"
+         href="tel:+447729400196"
+         onclick="gtag('event','contact_phone_click',{page: location.pathname})">
+        +44 7729 400196
+      </a>
+    </li>
 
-            <li>
-              <strong>Email:</strong>
-              <!-- TODO: podmień email jeśli inny -->
-              <a class="link-gold" href="mailto:info@topps-handyman.uk">info@topps-handyman.uk</a>
-            </li>
+    <li>
+      <strong>Email:</strong>
+      <a class="link-gold"
+         href="mailto:info@topps-handyman.uk"
+         onclick="gtag('event','contact_email_click',{page: location.pathname})">
+        info@topps-handyman.uk
+      </a>
+    </li>
 
-
-            <li><strong>Area covered:</strong> Aberdeen & surrounding areas</li>
-          </ul>
+    <li>
+      <strong>Area covered:</strong> Aberdeen &amp; surrounding areas
+    </li>
+  </ul>
+</div> 
 
           <h3>Working hours</h3>
           <ul>
@@ -517,6 +539,7 @@ border-radius: 0 !important;
       if (res.ok) {
         form.reset();
         thankYou.style.display = 'block';
+        form.style.display = 'none';
         // opcjonalnie: ukryj formularz po wysłaniu
         // form.style.display = 'none';
       } else {
@@ -525,7 +548,75 @@ border-radius: 0 !important;
     } catch (err) {
       alert("Network error. Please try again or call us.");
     }
+    
+  });
+</script>
+<div id="cookie-banner" style="
+  position:fixed;left:0;right:0;bottom:0;
+  background:#111;border-top:2px solid #ffcc00;color:#fff;
+  padding:14px 16px;display:none;z-index:9999;font-size:14px;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;">
+    <div style="flex:1 1 300px;">
+      We use analytics cookies to understand website traffic. You can accept or reject analytics cookies.
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button id="cookie-reject" style="
+        background:#222;border:2px solid #ffcc00;color:#ffcc00;
+        padding:8px 14px;border-radius:10px;cursor:pointer;font-weight:700;">
+        Reject
+      </button>
+      <button id="cookie-accept" style="
+        background:#ffcc00;border:none;color:#000;
+        padding:8px 14px;border-radius:10px;cursor:pointer;font-weight:800;">
+        Accept
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById("cookie-banner");
+  const acceptBtn = document.getElementById("cookie-accept");
+  const rejectBtn = document.getElementById("cookie-reject");
+
+  const KEY = "cookieConsent"; // accepted | rejected
+
+  function getConsent() { return localStorage.getItem(KEY); }
+  function setConsent(v) { localStorage.setItem(KEY, v); }
+
+  function grantAnalytics() {
+    if (typeof gtag === "function") {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+  }
+
+  function denyAnalytics() {
+    if (typeof gtag === "function") {
+      gtag('consent', 'update', { analytics_storage: 'denied' });
+    }
+  }
+
+  const consent = getConsent();
+  if (!consent) {
+    banner.style.display = "block";
+  } else if (consent === "accepted") {
+    grantAnalytics();
+  } else {
+    denyAnalytics();
+  }
+
+  acceptBtn.addEventListener("click", () => {
+    setConsent("accepted");
+    banner.style.display = "none";
+    grantAnalytics();
+  });
+
+  rejectBtn.addEventListener("click", () => {
+    setConsent("rejected");
+    banner.style.display = "none";
+    denyAnalytics();
   });
 </script>
 </body>
 </html>
+
