@@ -489,29 +489,41 @@
           </p>
 
           <!-- Formspree -->
-          <form id="reviewForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <div id="formFields">
-              <label class="field-label" for="name">Your name</label>
-              <input class="control" id="name" name="name" type="text" required />
+          <form id="reviewForm" action="https://formspree.io/f/mkojbood" method="POST">
+  <div id="formFields">
+    <!-- (opcjonalnie) temat maila -->
+    <input type="hidden" name="_subject" value="New review from Topps Handyman website" />
 
-              <label class="field-label" for="stars">Rating</label>
-              <select class="control" id="stars" name="rating" required>
-                <option value="5">★★★★★ (5)</option>
-                <option value="4">★★★★☆ (4)</option>
-                <option value="3">★★★☆☆ (3)</option>
-                <option value="2">★★☆☆☆ (2)</option>
-                <option value="1">★☆☆☆☆ (1)</option>
-              </select>
+    <!-- (opcjonalnie) antyspam (honeypot) -->
+    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
-              <label class="field-label" for="review">Review</label>
-              <textarea class="control" id="review" name="review" rows="5" required></textarea>
+    <label class="field-label" for="name">Your name</label>
+    <input class="control" id="name" name="name" type="text" required />
 
-              <label class="field-label" for="reply">Email or phone (optional)</label>
-              <input class="control" id="reply" name="reply_to" type="text" />
+    <label class="field-label" for="stars">Rating</label>
+    <select class="control" id="stars" name="rating" required>
+      <option value="5">★★★★★ (5)</option>
+      <option value="4">★★★★☆ (4)</option>
+      <option value="3">★★★☆☆ (3)</option>
+      <option value="2">★★☆☆☆ (2)</option>
+      <option value="1">★☆☆☆☆ (1)</option>
+    </select>
 
-              <button class="btn" type="submit">Send review</button>
-            </div>
+    <label class="field-label" for="review">Review</label>
+    <textarea class="control" id="review" name="review" rows="5" required></textarea>
 
+    <label class="field-label" for="email">Email (optional)</label>
+    <input class="control" id="email" name="email" type="email" placeholder="name@email.com" />
+
+    <button class="btn" id="sendBtn" type="submit">Send review</button>
+    <div class="small-note">We’ll publish your review after a quick spam check.</div>
+  </div>
+
+  <div id="thanks" class="thanks">
+    Thank you! Your review has been sent successfully — we really appreciate your feedback.
+  </div>
+</form>
+         
             <div id="thanks" class="thanks">
               Thank you! Your review has been sent successfully — we really appreciate your feedback.
             </div>
@@ -850,3 +862,4 @@ I am extremely happy with my lovely painted bathroom. 10 out of 10.`
 </script>
 </body>
 </html>
+
